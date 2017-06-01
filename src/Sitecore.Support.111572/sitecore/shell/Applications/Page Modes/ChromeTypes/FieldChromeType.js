@@ -563,7 +563,11 @@
  
   onKeyUp: function (event) {
     if ($sc.inArray(event.keyCode, this._ignoreKeyCodes) > -1) return;
-   if (this.chrome.element.attr("scfieldtype") == "rich text" && event.currentTarget.innerText != null && event.currentTarget.innerText.trim() == "" && (event.currentTarget.innerHTML == "" || event.currentTarget.innerHTML == "<br>"))  {
+    if (this.chrome.element.attr("scfieldtype") == "rich text"
+        && event.currentTarget.innerText != null
+        && event.currentTarget.innerText.trim() == ""
+        && (event.currentTarget.innerHTML == ""
+        || (!event.currentTarget.innerHTML.includes("img") && !event.currentTarget.innerHTML.includes("href")))) {
       event.currentTarget.innerHTML = "";
     }
     if (this.fieldValue.val() != event.currentTarget.innerHTML) {
